@@ -18,11 +18,7 @@ import model.Session;
 import model.Subject;
 import model.TimeSlot;
 
-/**
- *
- * @author Ngo Tung Son
- */
-public class SessionDBContext extends dal.DBContext<Session> {
+public class SessionDBContext extends DBContext<Session> {
 
     public ArrayList<Session> filter(int lid, Date from, Date to) {
         ArrayList<Session> sessions = new ArrayList<>();
