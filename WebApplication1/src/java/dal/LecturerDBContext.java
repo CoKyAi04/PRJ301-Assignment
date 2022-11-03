@@ -36,8 +36,29 @@ public class LecturerDBContext extends DBContext<Lecturer> {
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, id);
             ResultSet rs = stm.executeQuery();
-            if(rs.next())
-            {
+            if (rs.next()) {
+                Lecturer l = new Lecturer();
+                l.setId(rs.getInt("lid"));
+                l.setName(rs.getString("lname"));
+                return l;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(LecturerDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public Lecturer getLecturer(String username) {
+        try {
+            String sql = "SELECT a.username, la.lid, l.lname\n"
+                    + "	FROM Account a \n"
+                    + "	INNER JOIN Lecturer_Account la ON a.username = la.username\n"
+                    + "	INNER JOIN Lecturer l ON la.lid = l.lid\n"
+                    + "	WHERE a.username = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, username);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
                 Lecturer l = new Lecturer();
                 l.setId(rs.getInt("lid"));
                 l.setName(rs.getString("lname"));
@@ -53,5 +74,5 @@ public class LecturerDBContext extends DBContext<Lecturer> {
     public ArrayList<Lecturer> list() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }

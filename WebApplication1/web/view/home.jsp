@@ -17,6 +17,7 @@
             Hello ${sessionScope.account.displayname},  click 
             <a href="logout">here</a> 
             to logout. <br/>
+            <a class="header">${requestScope.account.username}</a>
             <a href="lecturer/timetable">TimeTable</a> <br/>
             <a href="lecturer/takeattandance">TakeAttandance</a> <br/>
             <a href="lecturer/attandacne">Attandance Report</a> 
