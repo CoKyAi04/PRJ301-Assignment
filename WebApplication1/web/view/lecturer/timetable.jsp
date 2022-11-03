@@ -45,7 +45,7 @@
                                         <img src="../img/female-icon.png" alt=""/>
                                     </c:if>
                                 </c:if>
-                                  
+
                             </c:forEach>
                         </td>
                     </c:forEach>

@@ -7,6 +7,7 @@ package model;
 import java.util.ArrayList;
 
 public class Feature {
+
     private int id;
     private String name;
     private String url;
@@ -43,5 +44,5 @@ public class Feature {
     public void setRoles(ArrayList<Role> roles) {
         this.roles = roles;
     }
-    
+
 }
