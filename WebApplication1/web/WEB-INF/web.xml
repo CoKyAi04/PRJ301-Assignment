@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-
     <servlet>
-        <servlet-name>LecturerTimetableController</servlet-name>
+        <servlet-name>lecturertimetablecontroller</servlet-name>
         <servlet-class>lecturer.TimetableController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>lecturertakeattandancecontroller</servlet-name>
+        <servlet-class>lecturer.TakeAttandanceController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>lecturerattandancerepoertcontroller</servlet-name>
+        <servlet-class>lecturer.AttandanceReportController</servlet-class>
+    </servlet>
     <servlet-mapping>
-        <servlet-name>LecturerTimetableController</servlet-name>
+        <servlet-name>lecturertimetablecontroller</servlet-name>
         <url-pattern>/lecturer/timetable</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>lecturertakeattandancecontroller</servlet-name>
+        <url-pattern>/lecturer/takeattandance</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>lecturerattandancerepoertcontroller</servlet-name>
+        <url-pattern>/lecturer/attandancereport</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
