@@ -43,6 +43,5 @@ public class Lecturer {
 
     public void setSessions(ArrayList<Session> sessions) {
         this.sessions = sessions;
-    }
-    
+    }   
 }

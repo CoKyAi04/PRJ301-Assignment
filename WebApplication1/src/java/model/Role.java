@@ -42,6 +42,5 @@ public class Role {
 
     public void setFeatures(ArrayList<Feature> features) {
         this.features = features;
-    }
-    
+    }   
 }

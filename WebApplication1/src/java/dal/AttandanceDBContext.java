@@ -124,5 +124,4 @@ public class AttandanceDBContext extends DBContext<Attandance> {
     public ArrayList<Attandance> list() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
 }

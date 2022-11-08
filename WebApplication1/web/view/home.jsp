@@ -19,7 +19,7 @@
             to logout. <br/>
             <a class="header">${requestScope.account.username}</a>
             <a href="lecturer/timetable">TimeTable</a> <br/>
-            <a href="lecturer/attandacne">Attandance Report</a> 
+            <a href="lecturer/attandancereport">Attandance Report</a> 
         </c:if>
         <c:if test="${sessionScope.account eq null}">
             You are not logged in yet!<br/>

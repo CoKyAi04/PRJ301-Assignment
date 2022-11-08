@@ -11,6 +11,7 @@ import java.util.ArrayList;
  * @author Ngo Tung Son
  */
 public class Subject {
+
     private int id;
     private String name;
     private ArrayList<Group> groups = new ArrayList<>();
@@ -38,5 +39,4 @@ public class Subject {
     public void setGroups(ArrayList<Group> groups) {
         this.groups = groups;
     }
-    
 }

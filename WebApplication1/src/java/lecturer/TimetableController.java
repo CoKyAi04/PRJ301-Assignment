@@ -65,7 +65,6 @@ public class TimetableController extends BaseRoleController {
         request.setAttribute("lecturer", lecturer);
 
         request.getRequestDispatcher("../view/lecturer/timetable.jsp").forward(request, response);
-
     }
 
     @Override
@@ -77,5 +76,4 @@ public class TimetableController extends BaseRoleController {
     protected void processGet(HttpServletRequest req, HttpServletResponse resp, Account account) throws ServletException, IOException {
         processRequest(req, resp, account);
     }
-
 }

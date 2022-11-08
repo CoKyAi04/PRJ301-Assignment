@@ -52,5 +52,4 @@ public class TakeAttandanceController extends BaseRoleController {
         req.setAttribute("ses", ses);
         req.getRequestDispatcher("../view/lecturer/takeattandance.jsp").forward(req, resp);
     }
-
 }

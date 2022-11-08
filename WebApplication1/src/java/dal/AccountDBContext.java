@@ -45,20 +45,17 @@ public class AccountDBContext extends DBContext<Account> {
                     account.setDisplayname(rs.getString("displayname"));
                 }
                 int rid = rs.getInt("rid");
-                if(rid!=0)
-                {
-                    if(rid!= currentRole.getId())
-                    {
+                if (rid != 0) {
+                    if (rid != currentRole.getId()) {
                         currentRole = new Role();
                         currentRole.setId(rs.getInt("rid"));
                         currentRole.setName(rs.getString("rname"));
                         account.getRoles().add(currentRole);
                     }
                 }
-                
+
                 int fid = rs.getInt("fid");
-                if(fid!=0)
-                {
+                if (fid != 0) {
                     Feature f = new Feature();
                     f.setId(rs.getInt("fid"));
                     f.setName(rs.getString("fname"));
@@ -98,5 +95,4 @@ public class AccountDBContext extends DBContext<Account> {
     public ArrayList<Account> list() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
 }

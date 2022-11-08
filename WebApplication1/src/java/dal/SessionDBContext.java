@@ -47,40 +47,39 @@ public class SessionDBContext extends DBContext<Session> {
             stm.setDate(2, from);
             stm.setDate(3, to);
             ResultSet rs = stm.executeQuery();
-            while(rs.next())
-            {
+            while (rs.next()) {
                 Session session = new Session();
                 Lecturer l = new Lecturer();
                 Room r = new Room();
                 Group g = new Group();
                 TimeSlot t = new TimeSlot();
                 Subject sub = new Subject();
-                
+
                 session.setId(rs.getInt("sesid"));
                 session.setDate(rs.getDate("date"));
                 session.setIndex(rs.getInt("index"));
                 session.setAttanded(rs.getBoolean("attanded"));
-                
+
                 l.setId(rs.getInt("lid"));
                 l.setName(rs.getString("lname"));
                 session.setLecturer(l);
-                
+
                 g.setId(rs.getInt("gid"));
                 g.setName(rs.getString("gname"));
                 session.setGroup(g);
-                
+
                 sub.setId(rs.getInt("subid"));
                 sub.setName(rs.getString("subname"));
                 g.setSubject(sub);
-                
+
                 r.setId(rs.getInt("rid"));
                 r.setName(rs.getString("rname"));
                 session.setRoom(r);
-                
+
                 t.setId(rs.getInt("tid"));
                 t.setDescription(rs.getString("description"));
                 session.setTimeslot(t);
-                
+
                 sessions.add(session);
             }
         } catch (SQLException ex) {
@@ -96,7 +95,7 @@ public class SessionDBContext extends DBContext<Session> {
 
     @Override
     public void update(Session model) {
-          try {
+        try {
             connection.setAutoCommit(false);
             String sql = "UPDATE [Session] SET attanded = 1 WHERE sesid = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
@@ -145,7 +144,6 @@ public class SessionDBContext extends DBContext<Session> {
                 Logger.getLogger(SessionDBContext.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
     }
 
     @Override
@@ -234,4 +232,23 @@ public class SessionDBContext extends DBContext<Session> {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    public ArrayList<Session> getByGroup(int gid) {
+        ArrayList<Session> sessions = new ArrayList<>();
+        try {
+            String sql = "select [index] from [Session] ses \n"
+                    + "join [Group] g on ses.gid=g.gid\n"
+                    + "where g.gid=?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, gid);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Session ses = new Session();
+                ses.setIndex(rs.getInt("index"));
+                sessions.add(ses);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(SessionDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sessions;
+    }
 }

@@ -61,8 +61,5 @@ public class Attandance {
 
     public void setRecord_time(Date record_time) {
         this.record_time = record_time;
-    }
-
-    
-    
+    }   
 }

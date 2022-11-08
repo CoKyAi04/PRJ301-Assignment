@@ -33,12 +33,12 @@ public class LoginController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Cookie arr[] = request.getCookies();
-        if(arr != null) {
-            for(Cookie o : arr){
-                if(o.getName().equals("u")) {
+        if (arr != null) {
+            for (Cookie o : arr) {
+                if (o.getName().equals("u")) {
                     request.setAttribute("user", o.getValue());
                 }
-                if(o.getName().equals("p")) {
+                if (o.getName().equals("p")) {
                     request.setAttribute("pass", o.getValue());
                 }
             }
@@ -93,5 +93,4 @@ public class LoginController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

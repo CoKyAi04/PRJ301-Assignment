@@ -34,27 +34,27 @@
                     <td>Description</td>
                 </tr>
                 <c:forEach items="${requestScope.ses.attandances}" var="a" varStatus="loop">
-                 <tr>
-                    <td>${loop.index+1}</td>
-                    <td>${a.student.id}
-                    <input type="hidden" name="stdid" value="${a.student.id}"/>
-                    </td>
-                    <td>${a.student.name}</td>
-                    <td><input type="radio"
-                               <c:if test="${a.present}">
-                               checked="checked"
-                               </c:if>
-                               name="present${a.student.id}" value="present" /></td>
-                    <td><input type="radio"
-                               <c:if test="${!a.present}">
-                               checked="checked"
-                               </c:if>
-                               name="present${a.student.id}" value="absent" /></td>
-                    <td><input type="text" name="description${a.student.id}" value="${a.description}" /></td>
-                </tr>   
-                    
+                    <tr>
+                        <td>${loop.index+1}</td>
+                        <td>${a.student.id}
+                            <input type="hidden" name="stdid" value="${a.student.id}"/>
+                        </td>
+                        <td>${a.student.name}</td>
+                        <td><input type="radio"
+                                   <c:if test="${a.present}">
+                                       checked="checked"
+                                   </c:if>
+                                   name="present${a.student.id}" value="present" /></td>
+                        <td><input type="radio"
+                                   <c:if test="${!a.present}">
+                                       checked="checked"
+                                   </c:if>
+                                   name="present${a.student.id}" value="absent" /></td>
+                        <td><input type="text" name="description${a.student.id}" value="${a.description}" /></td>
+                    </tr>   
+
                 </c:forEach>
-                
+
             </table>
             <input type="submit" value="Save"/>
         </form>

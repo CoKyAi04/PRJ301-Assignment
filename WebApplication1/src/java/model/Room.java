@@ -33,6 +33,5 @@ public class Room {
 
     public void setSessions(ArrayList<Session> sessions) {
         this.sessions = sessions;
-    }
-    
+    }  
 }

@@ -46,6 +46,5 @@ public class Student {
 
     public void setAttandances(ArrayList<Attandance> attandances) {
         this.attandances = attandances;
-    }
-    
+    }   
 }

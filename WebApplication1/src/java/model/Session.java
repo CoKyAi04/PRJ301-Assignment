@@ -94,5 +94,4 @@ public class Session {
     public void setAttandances(ArrayList<Attandance> attandances) {
         this.attandances = attandances;
     }
-
 }
