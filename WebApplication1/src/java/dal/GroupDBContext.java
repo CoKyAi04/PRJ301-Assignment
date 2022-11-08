@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Group;
 import model.Lecturer;
+import model.Session;
 import model.Subject;
 import model.TimeSlot;
 
@@ -79,6 +80,39 @@ public class GroupDBContext extends DBContext<GroupDBContext> {
             Logger.getLogger(SessionDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return g;
+    }
+    public Group get(int gid, int lid, int subid) {
+
+        try {
+            String sql = "SELECT DISTINCT ses.sesid\n"
+                    + "FROM [Session] ses \n"
+                    + "	LEFT JOIN [Group] g ON g.gid = ses.gid\n"
+                    + "	INNER JOIN [Student_Group] sg ON sg.gid = g.gid\n"
+                    + "	INNER JOIN Student s ON sg.stdid = s.stdid\n"
+                    + "	INNER JOIN Lecturer l ON l.lid = ses.lid\n"
+                    + "	INNER JOIN [Subject] sb ON sb.subid = g.subid\n"
+                    + "WHERE g.gid = ? and l.lid = ? and sb.subid = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, gid);
+            stm.setInt(2, lid);
+            stm.setInt(3, subid);
+            ResultSet rs = stm.executeQuery();
+            Group group = new Group();
+            group.setId(gid);
+            ArrayList<Session> sessions = new ArrayList<>();
+            while (rs.next()) {
+                SessionDBContext sesDB = new SessionDBContext();
+                Session session = sesDB.get(rs.getInt("sesid"));
+                sessions.add(session);
+            }
+            group.setSessions(sessions);
+            StudentDBContext stdDB = new StudentDBContext();
+            group.setStudents(stdDB.list(gid));
+            return group;
+        } catch (SQLException ex) {
+            Logger.getLogger(SessionDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override

@@ -16,6 +16,7 @@ public class Group {
     private ArrayList<Student> students = new ArrayList<>();
     private Subject subject;
     private Lecturer supervisor;
+    private ArrayList<Session> sessions = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -55,6 +56,14 @@ public class Group {
 
     public void setSupervisor(Lecturer supervisor) {
         this.supervisor = supervisor;
+    }
+
+    public ArrayList<Session> getSessions() {
+        return sessions;
+    }
+
+    public void setSessions(ArrayList<Session> sessions) {
+        this.sessions = sessions;
     }
     
 }

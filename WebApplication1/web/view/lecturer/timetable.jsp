@@ -41,11 +41,11 @@
                                     ${ses.room.name}
                                     <c:if test="${ses.attanded}">
                                         <a> <br>(Attended) </a>
-                                    </c:if>
-                                    <c:if test="${!ses.attanded}">
+                                        </c:if>
+                                        <c:if test="${!ses.attanded}">
                                         <a> <br>(Not yet) </a>
+                                        </c:if>
                                     </c:if>
-                                </c:if>
 
                             </c:forEach>
                         </td>
