@@ -14,6 +14,8 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <a href="http://localhost:9999/AssignmentcuaCoKyAi/home">Home</a><br/>
+        <a href="http://localhost:9999/AssignmentcuaCoKyAi/logout">Logout</a><br/>
         Lecturer: <input type="text" readonly="readonly" value="${requestScope.lecturer.name}"/>
         <form action="timetable" method="GET">
             From: <input type="date" name="from" value="${requestScope.from}"/>
@@ -34,14 +36,14 @@
                         <td>
                             <c:forEach items="${requestScope.sessions}" var="ses">
                                 <c:if test="${helper.compare(ses.date,d) eq 0 and (ses.timeslot.id eq slot.id)}">
-                                    <a href="att?id=${ses.id}">${ses.group.name}-${ses.group.subject.name}</a>
+                                    <a href = "takeattandance?id=${ses.id}"> ${ses.group.name}-${ses.group.subject.name}</a>
                                     <br/>
                                     ${ses.room.name}
                                     <c:if test="${ses.attandated}">
-                                        <img src="../img/male-icon.png" alt=""/>
+                                        <a> <br>(Attended) </a>
                                     </c:if>
                                     <c:if test="${!ses.attandated}">
-                                        <img src="../img/female-icon.png" alt=""/>
+                                        <a> <br>(Not yet) </a>
                                     </c:if>
                                 </c:if>
 

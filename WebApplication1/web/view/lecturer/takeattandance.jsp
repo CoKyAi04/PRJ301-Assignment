@@ -1,9 +1,11 @@
 <%-- 
-    Document   : takeattandance
-    Created on : Nov 4, 2022, 12:24:03 AM
-    Author     : minh0
+    Document   : att
+    Created on : Oct 16, 2022, 3:08:10 PM
+    Author     : sonnt
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,6 +14,50 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <a  href="timetable?lid=${requestScope.ses.lecturer.id}">Timetable</a><br/>
+        Take attendance for Group: ${requestScope.ses.group.name} <br/>
+        Subject: ${requestScope.ses.group.subject.name} <br/>
+        Room: ${requestScope.ses.room.name} <br/>
+        Date: ${requestScope.ses.date} 
+        TimeSlot: ${requestScope.ses.slot.description}<br/>
+        Attended: <span style="color: red;"> ${requestScope.ses.attanded?"Yes":"No"} </span>
+        <form action="takeattandance" method="POST">
+            <input type="hidden" name="sesid" value="${param.id}"/>
+            <table border="1px">
+                <tr>
+                    <td>No.</td>
+                    <td>StudentID</td>
+                    <td>Full Name</td>
+                    <td>Present</td>
+                    <td>Absent</td>
+                    <td>Description</td>
+                    <td>Record_time</td>
+                </tr>
+                <c:forEach items="${requestScope.ses.attandances}" var="a" varStatus="loop">
+                 <tr>
+                    <td>${loop.index+1}</td>
+                    <td>${a.student.id}
+                    <input type="hidden" name="stdid" value="${a.student.id}"/>
+                    </td>
+                    <td>${a.student.name}</td>
+                    <td><input type="radio"
+                               <c:if test="${a.present}">
+                               checked="checked"
+                               </c:if>
+                               name="present${a.student.id}" value="present" /></td>
+                    <td><input type="radio"
+                               <c:if test="${!a.present}">
+                               checked="checked"
+                               </c:if>
+                               name="present${a.student.id}" value="absent" /></td>
+                    <td><input type="text" name="description${a.student.id}" value="${a.description}" /></td>
+                    <td>${a.record_time}</td>
+                </tr>   
+                    
+                </c:forEach>
+                
+            </table>
+            <input type="submit" value="Save"/>
+        </form>
     </body>
 </html>

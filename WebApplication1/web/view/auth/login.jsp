@@ -13,8 +13,8 @@
     </head>
     <body>
         <form action="login" method="POST">
-            Username: <input type="text" name="username" value="${user}"/> <br/>
-            password: <input type="password" name="password" value="${pass}" /> <br/>
+            Username: <input type="text" name="username"/> <br/>
+            password: <input type="password" name="password"  /> <br/>
             Remember Me <input type="checkbox" name="remember"/> <br/>
             <input type="submit" value="Login" /> 
         </form> 

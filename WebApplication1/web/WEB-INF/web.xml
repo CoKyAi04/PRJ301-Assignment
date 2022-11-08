@@ -18,11 +18,11 @@
     </servlet>
     <servlet>
         <servlet-name>lecturertakeattandance</servlet-name>
-        <servlet-class>lecturer.TakeAttandance</servlet-class>
+        <servlet-class>lecturer.TakeAttandanceController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>lecturerattandancereport</servlet-name>
-        <servlet-class>lecturer.AttandanceReport</servlet-class>
+        <servlet-class>lecturer.AttandanceReportController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>logincontroller</servlet-name>
