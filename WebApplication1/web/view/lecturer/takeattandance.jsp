@@ -15,6 +15,7 @@
     </head>
     <body>
         <a href="timetable">TimeTable</a> <br/>
+        Lecturer: ${requestScope.ses.lecturer.name}<br/>
         Take attendance for Group: ${requestScope.ses.group.name} <br/>
         Subject: ${requestScope.ses.group.subject.name} <br/>
         Room: ${requestScope.ses.room.name} <br/>
