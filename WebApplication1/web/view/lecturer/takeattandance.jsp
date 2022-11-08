@@ -14,12 +14,12 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <a  href="timetable?lid=${requestScope.ses.lecturer.id}">Timetable</a><br/>
+        <a href="timetable">TimeTable</a> <br/>
         Take attendance for Group: ${requestScope.ses.group.name} <br/>
         Subject: ${requestScope.ses.group.subject.name} <br/>
         Room: ${requestScope.ses.room.name} <br/>
-        Date: ${requestScope.ses.date} 
-        TimeSlot: ${requestScope.ses.slot.description}<br/>
+        Date: ${requestScope.ses.date} <br/>
+        TimeSlot: ${requestScope.ses.timeslot.description}<br/>
         Attended: <span style="color: red;"> ${requestScope.ses.attanded?"Yes":"No"} </span>
         <form action="takeattandance" method="POST">
             <input type="hidden" name="sesid" value="${param.id}"/>
@@ -31,7 +31,6 @@
                     <td>Present</td>
                     <td>Absent</td>
                     <td>Description</td>
-                    <td>Record_time</td>
                 </tr>
                 <c:forEach items="${requestScope.ses.attandances}" var="a" varStatus="loop">
                  <tr>
@@ -51,7 +50,6 @@
                                </c:if>
                                name="present${a.student.id}" value="absent" /></td>
                     <td><input type="text" name="description${a.student.id}" value="${a.description}" /></td>
-                    <td>${a.record_time}</td>
                 </tr>   
                     
                 </c:forEach>

@@ -44,13 +44,13 @@ public class TakeAttandanceController extends BaseRoleController {
     }
 
     @Override
-    protected void processGet(HttpServletRequest req, HttpServletResponse resp, Account account) throws ServletException, IOException {
+    protected void processGet(HttpServletRequest req, HttpServletResponse resp,
+            Account account) throws ServletException, IOException {
         int sesid = Integer.parseInt(req.getParameter("id"));
         SessionDBContext sesDB = new SessionDBContext();
         Session ses = sesDB.get(sesid);
         req.setAttribute("ses", ses);
         req.getRequestDispatcher("../view/lecturer/takeattandance.jsp").forward(req, resp);
     }
-      
 
 }

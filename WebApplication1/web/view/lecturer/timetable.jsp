@@ -39,10 +39,10 @@
                                     <a href = "takeattandance?id=${ses.id}"> ${ses.group.name}-${ses.group.subject.name}</a>
                                     <br/>
                                     ${ses.room.name}
-                                    <c:if test="${ses.attandated}">
+                                    <c:if test="${ses.attanded}">
                                         <a> <br>(Attended) </a>
                                     </c:if>
-                                    <c:if test="${!ses.attandated}">
+                                    <c:if test="${!ses.attanded}">
                                         <a> <br>(Not yet) </a>
                                     </c:if>
                                 </c:if>

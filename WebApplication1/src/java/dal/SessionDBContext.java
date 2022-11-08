@@ -59,7 +59,7 @@ public class SessionDBContext extends DBContext<Session> {
                 session.setId(rs.getInt("sesid"));
                 session.setDate(rs.getDate("date"));
                 session.setIndex(rs.getInt("index"));
-                session.setAttandated(rs.getBoolean("attanded"));
+                session.setAttanded(rs.getBoolean("attanded"));
                 
                 l.setId(rs.getInt("lid"));
                 l.setName(rs.getString("lname"));
@@ -96,7 +96,7 @@ public class SessionDBContext extends DBContext<Session> {
 
     @Override
     public void update(Session model) {
-         try {
+          try {
             connection.setAutoCommit(false);
             String sql = "UPDATE [Session] SET attanded = 1 WHERE sesid = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
@@ -161,7 +161,7 @@ public class SessionDBContext extends DBContext<Session> {
                     + "	,r.rid,r.rname\n"
                     + "	,t.tid,t.[description] tdescription\n"
                     + "	,l.lid,l.lname\n"
-                    + "	,sub.subid,a.record_time,sub.subname\n"
+                    + "	,sub.subid,sub.subname\n"
                     + "	,s.stdid,s.stdname\n"
                     + "	,ISNULL(a.present,0) present, ISNULL(a.[description],'') [description]\n"
                     + "		FROM [Session] ses\n"
@@ -172,7 +172,7 @@ public class SessionDBContext extends DBContext<Session> {
                     + "		INNER JOIN [Subject] sub ON sub.subid = g.subid\n"
                     + "		INNER JOIN [Student_Group] sg ON sg.gid = g.gid\n"
                     + "		INNER JOIN [Student] s ON s.stdid = sg.stdid\n"
-                    + "		LEFT JOIN Attendance a ON s.stdid = a.stdid AND ses.sesid = a.sesid\n"
+                    + "		LEFT JOIN Attandance a ON s.stdid = a.stdid AND ses.sesid = a.sesid\n"
                     + "WHERE ses.sesid = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, id);
@@ -188,7 +188,7 @@ public class SessionDBContext extends DBContext<Session> {
 
                     TimeSlot t = new TimeSlot();
                     t.setId(rs.getInt("tid"));
-                    t.setDescription(rs.getString("description"));
+                    t.setDescription(rs.getString("tdescription"));
                     ses.setTimeslot(t);
 
                     Lecturer l = new Lecturer();
@@ -208,7 +208,7 @@ public class SessionDBContext extends DBContext<Session> {
 
                     ses.setDate(rs.getDate("date"));
                     ses.setIndex(rs.getInt("index"));
-                    ses.setAttandated(rs.getBoolean("attanded"));
+                    ses.setAttanded(rs.getBoolean("attanded"));
                 }
                 //read student
                 Student s = new Student();
@@ -220,7 +220,6 @@ public class SessionDBContext extends DBContext<Session> {
                 a.setSession(ses);
                 a.setPresent(rs.getBoolean("present"));
                 a.setDescription(rs.getString("description"));
-                a.setRecord_time(rs.getTimestamp("record_time"));
                 ses.getAttandances().add(a);
             }
             return ses;
